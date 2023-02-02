@@ -9,7 +9,7 @@
 import MapKit
 
 public extension CLPlacemark {
-    public var address: String {
+    var address: String {
         var address = ""
         if let subThoroughfare = self.subThoroughfare {
             address += subThoroughfare + " "
@@ -26,10 +26,8 @@ public extension CLPlacemark {
         return address
     }
     
-    public var mkPlacemark: MKPlacemark? {
-        guard let coordinate = location?.coordinate, let addressDictionary = addressDictionary as? [String: Any] else {
-            return nil
-        }
-        return MKPlacemark(coordinate: coordinate, addressDictionary: addressDictionary)
+    var mkPlacemark: MKPlacemark? {
+        guard let coordinate = location?.coordinate else { return nil }
+        return MKPlacemark(coordinate: coordinate)
     }
 }

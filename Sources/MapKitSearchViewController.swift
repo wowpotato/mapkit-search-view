@@ -165,7 +165,7 @@ public class MapKitSearchViewController: UIViewController, UIGestureRecognizerDe
     open var alertSubtitle: String?
     
     convenience public init(delegate: MapKitSearchDelegate?) {
-        self.init(nibName: "MapKitSearchViewController", bundle: Bundle(for: MapKitSearchViewController.self))
+        self.init(nibName: "MapKitSearchViewController", bundle: .module)
         self.delegate = delegate
     }
     
@@ -186,8 +186,10 @@ public class MapKitSearchViewController: UIViewController, UIGestureRecognizerDe
         mapView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(mapView(isTap:))))
         searchBar.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(searchBar(isPan:))))
         tableView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(tableView(isPan:))))
-        tableView.register(UINib(nibName: "SearchCompletionTableViewCell", bundle: Bundle(for: SearchCompletionTableViewCell.self)), forCellReuseIdentifier: "SearchCompletion")
-        tableView.register(UINib(nibName: "MapItemTableViewCell", bundle: Bundle(for: MapItemTableViewCell.self)), forCellReuseIdentifier: "MapItem")
+        let searchCompletionTableViewCellNib = UINib(nibName: "SearchCompletionTableViewCell", bundle: .module)
+        tableView.register(searchCompletionTableViewCellNib, forCellReuseIdentifier: "SearchCompletion")
+        let mapItemTableViewCellNib = UINib(nibName: "MapItemTableViewCell", bundle: .module)
+        tableView.register(mapItemTableViewCellNib, forCellReuseIdentifier: "MapItem")
         mapView.delegate = self
         searchBar.delegate = self
         searchCompletionRequest?.region = mapView.region
@@ -307,8 +309,6 @@ public class MapKitSearchViewController: UIViewController, UIGestureRecognizerDe
             return
         }
         let mapItem = MKMapItem(placemark: placemark)
-           
-        delegate?.mapKitSearch(self, mapItem: mapItem)
         delegate?.mapKitSearch(self, userSelectedGeocodeItem: mapItem)
     }
     
@@ -482,7 +482,6 @@ public class MapKitSearchViewController: UIViewController, UIGestureRecognizerDe
             }
             // 1 Search Result. Refer to delegate.
             if response.mapItems.count == 1, let mapItem = response.mapItems.first {
-                delegate?.mapKitSearch(self, mapItem: mapItem)
                 delegate?.mapKitSearch(self, searchReturnedOneItem: mapItem)
 
             }
@@ -615,7 +614,7 @@ extension MapKitSearchViewController: MKMapViewDelegate {
         let coordinateRegion = MKCoordinateRegion(center: location,
                                                   latitudinalMeters: 1000,
                                                   longitudinalMeters: 1000)
-        
+//        mapView.setRegion(mapView.regionThatFits(coordinateRegion), animated: true)
         mapView.setRegion(coordinateRegion, animated: true)
     }
     
@@ -717,7 +716,6 @@ extension MapKitSearchViewController: UITableViewDelegate {
             if let placeAnnotation = findPlaceAnnotation(from: selectedMapItem) {
                 centerAndZoomMapOnLocation(placeAnnotation.coordinate)
                 tableViewHide()
-                delegate?.mapKitSearch(self, mapItem: selectedMapItem)
                 delegate?.mapKitSearch(self, userSelectedListItem: selectedMapItem)
             }
         
@@ -727,12 +725,9 @@ extension MapKitSearchViewController: UITableViewDelegate {
 }
 extension MapKitSearchViewController: CLLocationManagerDelegate {
     public func locationManagerRequestLocation(withPermission permission: CLAuthorizationStatus? = nil) {
-        guard CLLocationManager.locationServicesEnabled() else {
-            return
-        }
-        switch CLLocationManager.authorizationStatus() {
+        switch self.locationManager.authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
-            locationManager.requestLocation()
+            locationManager.startUpdatingLocation()
             break
         case .notDetermined:
             guard let permission = permission else {
@@ -752,7 +747,7 @@ extension MapKitSearchViewController: CLLocationManagerDelegate {
         case .denied:
             UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:]) { [weak self] _ in
                 // TODO: Check if conflicts with locationManager(manager: didChangeAuthorization:)
-                switch CLLocationManager.authorizationStatus() {
+                switch self?.locationManager.authorizationStatus {
                 case .authorizedAlways, .authorizedWhenInUse:
                     self?.locationManager.requestLocation()
                     break
@@ -780,8 +775,10 @@ extension MapKitSearchViewController: CLLocationManagerDelegate {
         guard let location = locations.first else {
             return
         }
-        mapView.setCenter(location.coordinate, animated: true)
+//        mapView.setCenter(location.coordinate, animated: true)
         manager.stopUpdatingLocation()
+        
+        centerAndZoomMapOnLocation(location.coordinate)
     }
     
     public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

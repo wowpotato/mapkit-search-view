@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapKitSearchViewController" customModule="MapKitSearchView" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapKitSearchViewController" customModule="MapKitSearchView">
             <connections>
                 <outlet property="close" destination="F68-l0-ZwQ" id="s9W-bf-c5T"/>
                 <outlet property="compassParent" destination="NJ3-Qi-RXx" id="7CR-6O-IhG"/>
@@ -32,12 +30,12 @@
                     <color key="backgroundColor" red="0.62352941179999999" green="0.85490196080000003" blue="0.94901960780000005" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                 </mapView>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mlc-bN-VDF" customClass="MapTabsView" customModule="MapKitSearchView" customModuleProvider="target">
-                    <rect key="frame" x="323" y="28" width="40" height="80.5"/>
+                    <rect key="frame" x="323" y="8" width="40" height="80.5"/>
                     <subviews>
                         <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JV3-qp-yeS">
                             <rect key="frame" x="0.0" y="0.0" width="40" height="80.5"/>
                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="gjY-MN-ZZB">
-                                <rect key="frame" x="0.0" y="0.0" width="40" height="80.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="40" height="80"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                             <blurEffect style="light"/>
@@ -45,7 +43,7 @@
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="jjd-Fk-uhq">
                             <rect key="frame" x="0.0" y="0.0" width="40" height="80.5"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F68-l0-ZwQ">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F68-l0-ZwQ">
                                     <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="CBf-K2-ciu"/>
@@ -84,6 +82,7 @@
                             </subviews>
                         </stackView>
                     </subviews>
+                    <viewLayoutGuide key="safeArea" id="n6W-Rr-FGE"/>
                     <color key="backgroundColor" red="0.96862745100000003" green="1" blue="1" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="jjd-Fk-uhq" secondAttribute="bottom" id="6Ba-K2-qSn"/>
@@ -96,30 +95,29 @@
                         <constraint firstAttribute="width" constant="40" id="nfE-JF-bRt"/>
                         <constraint firstItem="jjd-Fk-uhq" firstAttribute="top" secondItem="Mlc-bN-VDF" secondAttribute="top" id="xgE-cX-CZS"/>
                     </constraints>
-                    <viewLayoutGuide key="safeArea" id="n6W-Rr-FGE"/>
                 </view>
                 <view contentMode="scaleToFill" placeholderIntrinsicWidth="50" placeholderIntrinsicHeight="128" translatesAutoresizingMaskIntoConstraints="NO" id="NJ3-Qi-RXx">
-                    <rect key="frame" x="327" y="116.5" width="40" height="40"/>
+                    <rect key="frame" x="327" y="96.5" width="40" height="40"/>
+                    <viewLayoutGuide key="safeArea" id="VW9-RN-dVH"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="2eF-zk-Rk2"/>
                         <constraint firstAttribute="height" constant="40" id="v63-AS-xJ5"/>
                     </constraints>
-                    <viewLayoutGuide key="safeArea" id="VW9-RN-dVH"/>
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rsI-lH-A9o" customClass="BottomSheetShadowView" customModule="MapKitSearchView" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="607" width="375" height="16"/>
+                    <viewLayoutGuide key="safeArea" id="O5Q-1x-H4c"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="16" id="esP-Id-HlN"/>
                     </constraints>
-                    <viewLayoutGuide key="safeArea" id="O5Q-1x-H4c"/>
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4cO-GH-3zc" customClass="BottomSheetView" customModule="MapKitSearchView" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="607" width="375" height="647"/>
+                    <rect key="frame" x="0.0" y="607" width="375" height="667"/>
                     <subviews>
                         <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="amx-xl-qTj">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="qDI-c8-w18">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                             <blurEffect style="light"/>
@@ -138,6 +136,7 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
+                    <viewLayoutGuide key="safeArea" id="oM1-rX-o3c"/>
                     <color key="backgroundColor" red="0.96862745100000003" green="1" blue="1" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="CqD-Nn-piV" firstAttribute="centerX" secondItem="4cO-GH-3zc" secondAttribute="centerX" id="Anc-e3-35I"/>
@@ -147,7 +146,6 @@
                         <constraint firstItem="CqD-Nn-piV" firstAttribute="top" secondItem="4cO-GH-3zc" secondAttribute="top" constant="4" id="qDG-nx-V01"/>
                         <constraint firstAttribute="trailing" secondItem="amx-xl-qTj" secondAttribute="trailing" id="sAv-pB-GOw"/>
                     </constraints>
-                    <viewLayoutGuide key="safeArea" id="oM1-rX-o3c"/>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nkB-yk-CYS">
                     <rect key="frame" x="0.0" y="607" width="375" height="60"/>
@@ -164,12 +162,13 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </tableView>
                     </subviews>
+                    <viewLayoutGuide key="safeArea" id="Lhb-iX-YqO"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="LvQ-MP-Rru"/>
                     </constraints>
-                    <viewLayoutGuide key="safeArea" id="Lhb-iX-YqO"/>
                 </stackView>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="rkm-KU-cZt"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="DqN-mY-i0f" secondAttribute="trailing" id="8tx-iC-wiu"/>
@@ -191,12 +190,11 @@
                 <constraint firstItem="nkB-yk-CYS" firstAttribute="trailing" secondItem="rkm-KU-cZt" secondAttribute="trailing" id="rxt-2H-Wjy"/>
                 <constraint firstAttribute="trailing" secondItem="4cO-GH-3zc" secondAttribute="trailing" id="sfe-iz-XAH"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="rkm-KU-cZt"/>
             <point key="canvasLocation" x="206" y="144"/>
         </view>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
     </objects>
     <resources>
-        <image name="round_close_black_24pt" width="48" height="48"/>
+        <image name="round_close_black_24pt" width="24" height="24"/>
     </resources>
 </document>

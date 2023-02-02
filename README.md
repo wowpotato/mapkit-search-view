@@ -23,8 +23,8 @@ An implementation of Apple's Map search view.
 ## Requirements
 
 - iOS 11.0+
-- Xcode 10.3+
-- Swift 4.2+
+- Xcode 14.2+
+- Swift 5.3+
 
 ## Installation
 
