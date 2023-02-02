@@ -45,12 +45,9 @@ extension CLPlacemark {
         if let state = administrativeArea?.localizedCapitalized { placemarkData.append(state) }
         if let stateArea = subAdministrativeArea?.localizedCapitalized { placemarkData.append(stateArea) }
         if let county = country?.localizedCapitalized { placemarkData.append(county) }
-        var result = ""
-        
-        placemarkData.forEach { result.append(" "+$0+",") }
+
+        var result = placemarkData.joined(separator: ",")
         result = result.trimmingCharacters(in: .whitespacesAndNewlines)
-        result.removeLast()
-        
         return result
     }
 }

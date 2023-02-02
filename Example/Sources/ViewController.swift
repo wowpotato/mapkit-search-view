@@ -38,7 +38,6 @@ extension ViewController: MapKitSearchDelegate {
     }
 
     func mapKitSearch(_ mapKitSearchViewController: MapKitSearchViewController, userSelectedGeocodeItem mapItem: MKMapItem) {
-        printAll(mapItem: mapItem)
     }
 
     func mapKitSearch(_ mapKitSearchViewController: MapKitSearchViewController, userSelectedAnnotationFromMap mapItem: MKMapItem) {
@@ -47,7 +46,9 @@ extension ViewController: MapKitSearchDelegate {
     
     func printAll(mapItem: MKMapItem) {
         print(mapItem.fullName)
-        print(mapItem.placemark.address)
+        print(mapItem.name)
+        print(mapItem.placemark.coordinate.latitude)
+        print(mapItem.placemark.coordinate.longitude)
     }
     
 }
